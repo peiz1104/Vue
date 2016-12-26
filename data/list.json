@@ -1,0 +1,116 @@
+{
+	"errno": 0,
+	"data": [
+		{
+			"title": "胡大饭馆(簋街三店)",
+			"jing": true,
+			"ju": true,
+			"address":"簋街",
+			"score":"4.7分",
+			"evaluate":"676人评价",
+			"isdaofu":true,
+			"daofu": "在线支付，商家营业时间均可用。",
+			"type": 1,
+			"imglist":[
+				{
+					"url": "01.jpg",
+					"subtitle" : "100元代金券！可使用包间，免费停车，...",
+					"price": 95,
+					"del": 100,
+					"sales": "6.3万",
+					"id": "1"
+				},
+				{
+					"url": "01.jpg",
+					"subtitle" : "300元储值卡！可使用包间，免费停车，...",
+					"price": 285,
+					"del": 300,
+					"sales": "1.4万",
+					"id": "2"
+				}
+			]
+		},
+		{
+			"title": "正一味(新街口星街坊百货店)",
+			"jing": true,
+			"ju": true,
+			"address":"新街口",
+			"score":"4.7分",
+			"evaluate":"435人评价",
+			"isdaofu":false,
+			"daofu": "在线支付，商家营业时间均可用。",
+			"type": 2,
+			"imglist":[
+				{
+					"url": "02.jpg",
+					"subtitle" : "单人餐！...",
+					"price": 18,
+					"del": 31,
+					"sales": "8338",
+					"id": "1"
+				},
+				{
+					"url": "03.jpg",
+					"subtitle" : "50元代金券！...",
+					"price": 42.5,
+					"del": 50,
+					"sales": "5.3万",
+					"id": "2"
+				},
+				{
+					"url": "03.jpg",
+					"subtitle" : "100元代金券！...",
+					"price": 49,
+					"del": 67,
+					"sales": "221",
+					"id": "3"
+				},
+				{
+					"url": "02.jpg",
+					"subtitle" : "30元代金券！...",
+					"price": 25.5,
+					"del": 50,
+					"sales": "4417",
+					"id": "4"
+				},
+				{
+					"url": "02.jpg",
+					"subtitle" : "美味套餐！节假日通用！",
+					"price": 21.9,
+					"del": 29,
+					"sales": "190",
+					"id": "5"
+				},
+				{
+					"url": "03.jpg",
+					"subtitle" : "150元代金券！...",
+					"price": 127.5,
+					"del": 150,
+					"sales": "943",
+					"id": "6"
+				}
+			]
+		},
+		{
+			"title": "宽板凳老灶火锅(簋街二店)",
+			"jing": true,
+			"ju": true,
+			"address":"簋街",
+			"score":"4.5分",
+			"evaluate":"206人评价",
+			"isdaofu":true,
+			"daofu": "9.2折,周一至周日 09:00-23:50可用",
+			"type": 3,
+			"imglist":[
+				{
+					"url": "03.jpg",
+					"subtitle" : "100元代金券！可使用包间，免费停车，...",
+					"price": 88.9,
+					"del": 100,
+					"sales": "18.5万",
+					"id": "1"
+				}
+			]
+		}
+	]
+}

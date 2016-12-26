@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,width=device-width">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body>
+
+	<div id="app">
+		<component v-bind:is="view"></component>
+	</div>
+	
+	<script type="text/template" id="tpl_home">
+		<header>
+			<a class="address" v-on:click='displayb'>北京<i></i></a>
+			<a href="" class='logo'>拉手网<i>lashou.com</i></a>
+			<a href="" class="user">我的<i></i></a>
+		</header>
+		<div class='addressPage'>
+           <div class="list_header">
+				<a  class="goback_home" v-on:click='goback'></a>
+				<div class="sousuo2">
+					<p>请选择城市</p>
+					<a href="#home" class="home_pic" v-on:click='goback'></a>
+				</div>
+			</div>
+			<div class="search clearboth">
+			  <div class="search1">
+				<input type="text" placeholder=" 请输入你想找的城市" v-on:click="showclose" v-on:keyup.enter="goSearch" v-model="searchKey">
+				<div class="sousuo"></div>
+			</div>
+			<div class="close" v-on:click="closeinput">关闭</div>
+		  </div>
+		   <p class='ps'>定位城市</p>
+		   <p class='np'>暂时无法定位，请手动选择城市</p>
+		    <p class='ps hot'>热门城市</p>
+		    <div class='hotCity'>
+              <ul class='list'>
+              	<li>北京</li>
+              	<li>上海</li>
+              	<li>天津</li>
+              	<li>杭州</li>
+              	<li>西安</li>
+              	<li>成都</li>
+              	<li>郑州</li>
+              	<li>厦门</li>
+              	<li>青岛</li>
+              	<li>深圳</li>
+              	<li>太原</li>
+              	<li>重庆</li>
+              	<li>武汉</li>
+              	<li>南京</li>
+              	<li>广州</li>
+              	<li>沈阳</li>
+              	<li>济南</li>
+              	<li>天水</li>
+              </ul>
+		    </div>
+		    <p class='all ps'>全部城市</p>
+		</div>
+		<div class="search clearboth">
+			<div class="search1">
+				<input type="text" placeholder=" 搜索商家、分类、地点" v-on:click="showclose" v-on:keyup.enter="goSearch" v-model="searchKey">
+				<div class="sousuo"></div>
+			</div>
+			<div class="close" v-on:click="closeinput">关闭</div>
+		</div>
+		<section id="home" class="home">
+			<div class="swiper-container">
+				<div class="carousel swiper-wrapper">
+					<ul class="type-list1 swiper-slide">
+						<li v-for="item in navjson1">
+							<a href="#/list/type/{{item.id}}">
+								<img v-bind:src="'img/icon1/' + item.url" alt="">
+								<span>{{item.title}}</span>
+							</a>
+						</li>
+					</ul>
+					<ul class="type-list1 swiper-slide">
+						<li v-for="item in navjson2">
+							<a href="#/list/type/{{item.id}}">
+								<img v-bind:src="'img/icon2/' + item.url" alt="">
+								<span>{{item.title}}</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="swiper-pagination"></div>
+			</div>
+			<div class="ad">
+				<a href="#list">
+					<div class="adtime">
+						<p>精选品牌</p>
+						<p>14点结束</p>
+						<div class="timeout"><span>--</span>天<span>--</span>小时<span>--</span>分<span></span>秒</div>
+					</div>
+					<div class="adpic">
+						<img src="img/ad/ad.jpg" alt="" />
+					</div>
+				</a>
+			</div>
+			<div class="caini">
+				<p>猜你喜欢</p>
+				<a href="#list">全部团购<i></i></a>
+			</div>
+
+			<ul class="home_product">
+				<li v-for="item in homejson | filterBy myKey">
+					<a href="#product">
+						<div class="hp_pic">
+							<img v-bind:src="'img/list/'+ item.url" alt=""/>
+						</div>
+						<div class="hp_detail">
+							<p><span>{{item.title}}</span><span>{{item.note}}</span></p>
+							<p><span>{{item.description}}</span></p>
+							<p><span>¥ {{item.price}}</span><span>{{item.del}}</span><span>已售{{item.sales}}</span></p>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<div class="find_all">查看全部团购</div>
+			<div class="goTop" v-on:click="goTop"></div>
+		</section>
+	</script>
+	<script type="text/template" id="tpl_list">
+		<section id="list" class="list">
+			<div class="list_header">
+				<a href="#home" class="goback_home"></a>
+				<div class="sousuo2">
+					<input type="text" placeholder="搜索商家、分类、地点" class="removehome" v-on:click="removehome" v-on:keyup.enter="goSearch" v-model="searchKey">
+					<a href="#home" class="home_pic"></a>
+					<div class="close1" v-on:click="showhome">关闭</div>
+				</div>
+			</div>
+			<div class="list_fenlei clearfix">
+				<ul>
+					<li v-for='item in type' v-on:click='changeType(item.key)'>
+                   <a>{{item.value}}<i></i></a>
+                   </li>
+				</ul>
+			</div>
+			<div class="list_product clearfix" v-for="item1 in listjson | filterBy Key">
+				<a href="#product" class="lp_title">
+					<p><span>{{item1.title}}</span><span v-if="item1.jing">精</span><span v-if="item1.ju">聚</span></p>
+					<p><span>{{item1.score}}</span><span>{{item1.evaluate}}</span><span>{{item1.address}}</span></p>
+				</a>
+				<a href="#product" class="lp_daofu" v-if="item1.isdaofu">
+					<p><span>到店付</span><span>{{item1.daofu}}</span></p>
+				</a>
+				<div class="lp_detail">
+					<ul>
+						<li v-for="item2 in list_json[$index] | filterBy myKey">
+							<a href="#product/{{item2.id}}">
+								<div class="lp_pic">
+									<img v-bind:src="'img/list_item/'+ item2.url" alt=""/>
+								</div>
+								<div class="lp_des">
+									<p>{{item2.subtitle}}</p>
+									<p><span>¥ {{item2.price}}</span><span>{{item2.del}}</span><span>已售{{item2.sales}}</span></p>
+								</div>
+							</a>
+						</li>
+					</ul>
+					<div class="load-more" v-if="other[$index].length != 0" v-on:click="loadMore($index)">
+						<span>查看其他{{other[$index].length}}条团购</span>
+						<span class="arrow"></span>
+					</div>
+				</div>
+			</div>
+		</section>
+	</script>
+	<script type="text/template" id="tpl_product">
+		<section id="product" class="product">
+		    <div class="list_header">
+				<a href="#home" class="goback_home"></a>
+				<div class="sousuo2">
+					<input type="text" placeholder="搜索商家、分类、地点" class="removehome" v-on:click="removehome" v-on:keyup.enter="goSearch" v-model="searchKey">
+					<a href="#home" class="home_pic"></a>
+					<div class="close1" v-on:click="showhome">关闭</div>
+				</div>
+			</div>
+			<div class="product-image">
+				<img v-bind:src="'img/list_item/'+ (data.url || '02.jpg')">
+				<h2>{{data.title}}</h2>
+				<p>{{data.description}}</p>
+			</div>
+			<div class="product-price">
+				<span class="price"><b>{{data.price}}</b> 元</span>
+				<span class="orign-price">{{data.orignPrice}}</span>
+				<span class="btn">立即购买</span>
+			</div>
+			<ul class="product-sales clearfix">
+				<li>支持自动退货</li>
+				<li>支持随时退货</li>
+				<li class="black">已售 {{data.sales}}</li>
+			</ul>
+			<div class="product-store module-item">
+				<h3 class="sub-title">店家信息</h3>
+				<div class="content">
+					<p>{{data.storeName}}</p>
+					<p>{{data.storeAdress}}</p>
+				</div>
+				<div class="item-footer">
+					<p>查看{{data.storeNum}}家分店</p>
+				</div>
+			</div>
+			<div class="product-note module-item">
+				<h3 class="sub-title">购买须知</h3>
+				<div class="content">
+					<ul>
+						<li>
+							<h4>有效期</h4>
+							<p>{{data.validateTime}}</p>
+						</li>
+						<li>
+							<h4>使用时间</h4>
+							<p>{{data.useTime}}</p>
+						</li>
+						<li>
+							<h4>使用规则</h4>
+							<ul>
+								<li v-for="item in data.rules">{{item}}</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+	</script>
+	<script type="text/javascript" src="require-min.js"></script>
+	<script type="text/javascript" src="js/lib/1swiper.min.js"></script>
+	<script type="text/javascript" src="js/route/begin.js"></script>
+	<script type="text/javascript">
+		require(['js/route/begin'],function(beigin){});
+	</script>
+</body>
+</html>
