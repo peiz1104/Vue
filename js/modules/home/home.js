@@ -30,10 +30,13 @@
 				
 		},
 		ready:function(){
-			setTimeout(function(){
-					var mySwiper = new Swiper ('.swiper-container', {
+		 setTimeout(function(){
+		      var mySwiper = new Swiper ('.swiper-container', {
 	    			direction: 'horizontal',
 	    			loop: true,
+				startSlide: 0,
+                                speed: 900,
+                                autoplay: 1500,
 	    			// 如果需要分页器
 	    			pagination: '.swiper-pagination'
   				});
