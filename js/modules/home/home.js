@@ -35,7 +35,7 @@
 	    			direction: 'horizontal',
 	    			loop: true,
 	    			// 如果需要分页器
-	    			pagination: '.swiper-pagination',
+	    			pagination: '.swiper-pagination'
   				});
 			},1)
 
