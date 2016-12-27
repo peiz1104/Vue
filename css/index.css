@@ -720,6 +720,16 @@ header .user i{
 .product {
 	background: #efefef;
 }
+.product .list_header .sousuo2{
+   background:#ff4683; 
+}
+.product .list_header .sousuo2 p{
+	color:#ffeef4;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	padding-top:8px; 
+}
 .product .product-image{
 	height: 180px;
 	width: 100%;
